@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+AlwaysBreakTemplateDeclarations: true
+BraceWrapping:
+  AfterCaseLabel: true
+FixNamespaceComments: true
+IndentCaseLabels: true
+IndentWidth: 2
+NamespaceIndentation: All
+PointerBindsToType: true

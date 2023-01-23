@@ -1,3 +1,9 @@
+*.output
+*.tab.c
+*.tab.h
+lex.yy.c
+brainflex
+
 # Prerequisites
 *.d
 
