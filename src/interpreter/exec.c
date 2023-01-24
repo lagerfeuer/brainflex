@@ -1,21 +1,26 @@
 #include "exec.h"
 #include "../grammar.tab.h"
+#include "../utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define STACK_SIZE 64
 #define CELLS_SIZE 256
 
-void exec(Node* program) {
+int exec(Node* program) {
   Node* curr = program;
 
-  int stack_mult = 1;
-  int stack_ptr = 0;
-  Node** stack = malloc(sizeof(Node*) * STACK_SIZE * stack_mult);
+  unsigned char stack_ptr = 0;
+  Node** stack = malloc(sizeof(Node*) * STACK_SIZE);
+  if (!stack)
+    return ERR_OUT_OF_MEMORY;
 
-  int cells_mult = 1;
-  int idx = CELLS_SIZE / 2;
-  int* cells = malloc(sizeof(int) * CELLS_SIZE * cells_mult);
+  unsigned short length = CELLS_SIZE;
+  unsigned short idx = CELLS_SIZE / 2;
+  unsigned short* cells = calloc(length, sizeof(unsigned short));
+  if (!cells)
+    return ERR_OUT_OF_MEMORY;
 
   while (curr != NULL) {
     switch (curr->token) {
@@ -26,10 +31,25 @@ void exec(Node* program) {
         cells[idx] = getchar();
         break;
       case LSHIFT:
-        idx--; // TODO fix negative overflow
+        if (idx == 0) {
+          length *= 2;
+          unsigned short* tmp = calloc(length, sizeof(unsigned short));
+          if (!tmp)
+            return ERR_OUT_OF_MEMORY;
+          memcpy(tmp + (length / 2), cells, length / 2);
+          cells = tmp;
+        }
+        idx--;
         break;
       case RSHIFT:
-        idx++; // TODO fix overflow
+        if (idx == length - 1) {
+          length *= 2;
+          unsigned short* tmp = calloc(length, sizeof(unsigned short));
+          if (!tmp)
+            return ERR_OUT_OF_MEMORY;
+          memcpy(tmp, cells, length / 2);
+        }
+        idx++;
         break;
       case INCR:
         cells[idx]++;
@@ -41,7 +61,10 @@ void exec(Node* program) {
         if (cells[idx] == 0) {
           curr = curr->other;
         } else {
-          stack[stack_ptr++] = curr; // TODO fix overflow
+          if (stack_ptr >= STACK_SIZE) {
+            return ERR_STACK_OVERFLOW;
+          }
+          stack[stack_ptr++] = curr;
         }
         break;
       case RBRACKET:
@@ -50,4 +73,5 @@ void exec(Node* program) {
     }
     curr = curr->next;
   }
+  return 0;
 }

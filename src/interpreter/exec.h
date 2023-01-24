@@ -3,6 +3,6 @@
 
 #include "../ast/node.h"
 
-void exec(Node* program);
+int exec(Node* program);
 
 #endif

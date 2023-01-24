@@ -8,6 +8,7 @@
 
   #include "ast/node.h"
   #include "interpreter/exec.h"
+  #include "utils.h"
 
   void yyerror(const char *s);
   extern int yylex();
@@ -85,9 +86,18 @@ int main(int argc, char** argv) {
   if (printAst) {
     printf("Got -p, print AST and exit...\n\n");
     printTree(prog);
+    exit(0);
   }
-  else
-    exec(prog);
+  int result = exec(prog);
+  switch(result) {
+    case ERR_STACK_OVERFLOW:
+      fprintf(stderr, "Stack Overflow, exiting...\n");
+      exit(ERR_STACK_OVERFLOW);
+    case ERR_OUT_OF_MEMORY:
+      fprintf(stderr, "Out of memory, exiting...\n");
+      exit(ERR_STACK_OVERFLOW);
+  }
+  return 0;
 }
 
 void yyerror(const char* s) {
