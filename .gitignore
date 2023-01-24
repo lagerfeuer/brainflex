@@ -3,6 +3,7 @@
 *.tab.h
 lex.yy.c
 brainflex
+.cache/
 
 # Prerequisites
 *.d

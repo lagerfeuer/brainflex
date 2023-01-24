@@ -11,7 +11,7 @@
   #include "utils.h"
 
   void yyerror(const char *s);
-  extern int yylex();
+  extern int yylex(void);
 
   struct node* prog;
 %}

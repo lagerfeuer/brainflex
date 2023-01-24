@@ -1,0 +1,62 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-O2",
+      "-Werror",
+      "-Wall",
+      "-o",
+      "../brainflex",
+      "lex.yy.c"
+    ],
+    "directory": "/home/ghost/code/github/brainflex/src",
+    "file": "/home/ghost/code/github/brainflex/src/lex.yy.c",
+    "output": "/home/ghost/code/github/brainflex/brainflex"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-O2",
+      "-Werror",
+      "-Wall",
+      "-o",
+      "../brainflex",
+      "grammar.tab.c"
+    ],
+    "directory": "/home/ghost/code/github/brainflex/src",
+    "file": "/home/ghost/code/github/brainflex/src/grammar.tab.c",
+    "output": "/home/ghost/code/github/brainflex/brainflex"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-O2",
+      "-Werror",
+      "-Wall",
+      "-o",
+      "../brainflex",
+      "ast/node.c"
+    ],
+    "directory": "/home/ghost/code/github/brainflex/src",
+    "file": "/home/ghost/code/github/brainflex/src/ast/node.c",
+    "output": "/home/ghost/code/github/brainflex/brainflex"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-O2",
+      "-Werror",
+      "-Wall",
+      "-o",
+      "../brainflex",
+      "interpreter/exec.c"
+    ],
+    "directory": "/home/ghost/code/github/brainflex/src",
+    "file": "/home/ghost/code/github/brainflex/src/interpreter/exec.c",
+    "output": "/home/ghost/code/github/brainflex/brainflex"
+  }
+]

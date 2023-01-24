@@ -1,7 +1,7 @@
 TARGET := ../brainflex
 
 CC ?= gcc
-CFLAGS := -O2 -Werror -Wall
+CFLAGS := -O2 -Wall -Wextra -Wpedantic
 CLIBS := -ll
 
 LEX := flex
