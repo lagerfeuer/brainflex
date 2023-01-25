@@ -16,9 +16,9 @@ int exec(Node* program) {
   if (!stack)
     return ERR_OUT_OF_MEMORY;
 
-  unsigned short length = CELLS_SIZE;
-  unsigned short idx = CELLS_SIZE / 2;
-  unsigned short* cells = calloc(length, sizeof(unsigned short));
+  size_t length = CELLS_SIZE;
+  size_t idx = CELLS_SIZE / 2;
+  cell_t* cells = calloc(length, sizeof(cell_t));
   if (!cells)
     return ERR_OUT_OF_MEMORY;
 
@@ -33,7 +33,7 @@ int exec(Node* program) {
       case LSHIFT:
         if (idx == 0) {
           length *= 2;
-          unsigned short* tmp = calloc(length, sizeof(unsigned short));
+          cell_t* tmp = calloc(length, sizeof(cell_t));
           if (!tmp)
             return ERR_OUT_OF_MEMORY;
           memcpy(tmp + (length / 2), cells, length / 2);
@@ -44,7 +44,7 @@ int exec(Node* program) {
       case RSHIFT:
         if (idx == length - 1) {
           length *= 2;
-          unsigned short* tmp = calloc(length, sizeof(unsigned short));
+          cell_t* tmp = calloc(length, sizeof(cell_t));
           if (!tmp)
             return ERR_OUT_OF_MEMORY;
           memcpy(tmp, cells, length / 2);

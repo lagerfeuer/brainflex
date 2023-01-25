@@ -8,5 +8,5 @@ debug:
 .PHONY: debug
 
 clean:
-	rm -rf brainflex
+	$(MAKE) $(MFLAGS) -C src/ clean
 .PHONY: clean

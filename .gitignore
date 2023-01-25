@@ -1,6 +1,7 @@
 *.output
-*.tab.c
 *.tab.h
+*.tab.c
+lex.yy.h
 lex.yy.c
 brainflex
 .cache/
