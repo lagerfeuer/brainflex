@@ -1,2 +1,2 @@
 # brainflex
-Brainfuck compiler using Flex &amp; Bison
+Brainfuck interpreter using Flex &amp; Bison
