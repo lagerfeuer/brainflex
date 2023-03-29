@@ -29,6 +29,8 @@ int exec(Node* program) {
         break;
       case READ:
         cells[idx] = getchar();
+        if ((int)cells[idx] == EOF)
+          return 0;
         break;
       case LSHIFT:
         if (idx == 0) {
